@@ -185,6 +185,11 @@ Step 8 ─── Audit Logging
 - Generates professional **PDF invoices** instantly on contract signing
 - Stores invoice history for accounting and audit purposes
 
+### 🛡 5. Audit & Compliance
+- **Immutable Audit Logs:** Every API action is logged with a checksum to prevent tampering
+- **Data Privacy Compliance:** Modules for GDPR / India's DPDP Act (Right to be Forgotten, Data Export)
+- All logs include: User ID, IP Address, Action, Timestamp
+
 ### 🖥 6. React + TypeScript Frontend
 - **Type-safe UI** built with React 18 and TypeScript — zero runtime type surprises
 - **React Router v6** for client-side navigation with protected routes (role-based)
@@ -192,9 +197,21 @@ Step 8 ─── Audit Logging
 - **Axios interceptors** for attaching JWT tokens to every API request automatically
 - **Real-time Risk Dashboard** — visualizes AI risk score and flagged clauses on upload
 - **Tailwind CSS** for responsive, mobile-first design
-- **Immutable Audit Logs:** Every API action is logged with a checksum to prevent tampering
-- **Data Privacy Compliance:** Modules for GDPR / India's DPDP Act (Right to be Forgotten, Data Export)
-- All logs include: User ID, IP Address, Action, Timestamp
+
+### 🌐 7. Multilingual Fundamental Rights Chatbot
+
+> 💡 *In India, approximately 90% of citizens are unaware of their fundamental rights — making them vulnerable to exploitation and injustice. This feature directly addresses that gap.*
+
+- **Multilingual Support:** Responds in Hindi, English, Tamil, Bengali, Marathi, and more — language is never a barrier for justice
+- **Rights Q&A Engine:** Powered by an NLP/LLM model trained on the Indian Constitution, legal provisions, and landmark case summaries
+- **Plain Language Answers:** Converts dense legal jargon into simple, clear explanations that anyone can understand
+- **Voice Recognition Input:** Speech-to-text support so even low-literacy users can ask questions verbally
+- **Speech Recognition Model:** Integrated voice-to-text model for regional language support
+- **Example queries a user can ask:**
+  - *"Mujhe bina wajah arrest kiya gaya — kya yeh galat hai?"*
+  - *"What is my right to education?"*
+  - *"Can police enter my house without a warrant?"*
+  - *"What is Article 21?"*
 
 ---
 
@@ -209,6 +226,7 @@ Step 8 ─── Audit Logging
 | **Invoice Service** | `8083` | Invoice generation, GST calculation, PDF export | Spring Boot, Apache PDFBox |
 | **Compliance Service** | `8084` | GDPR/DPDP policy management, data export requests | Spring Boot, PostgreSQL |
 | **AI Analysis Service** | `5000` | NLP risk scanning, clause detection, risk scoring | Python, Flask, spaCy/NLTK |
+| **Rights Chatbot Service** | `5001` | Multilingual fundamental rights Q&A, voice recognition | Python, Flask, LLM, SpeechRecognition |
 | **Notification Service** | `8086` | Email/SMS alerts (Kafka consumer) | Spring Boot, JavaMail |
 | **Audit Service** | `8085` | Immutable event logging (Kafka consumer) | Spring Boot, Kafka, PostgreSQL |
 
@@ -346,10 +364,21 @@ http://localhost:8761
 - [x] Kafka event-driven Invoice generation
 - [x] Immutable Audit Logging
 - [x] React + TypeScript Frontend with protected routes & Risk Dashboard
+- [ ] **Multilingual Fundamental Rights Chatbot** — Help the 90% of Indian citizens unaware of their rights, with voice input & regional language support
+- [ ] **Speech Recognition Model** — Regional language voice-to-text for low-literacy users
 - [ ] **Blockchain Verification** — Store contract hashes on Ethereum/Hyperledger
 - [ ] **Aadhaar eSign Integration** — Government ID verification for Indian users
-- [ ] **LLM Chatbot** — Query contracts in plain English via an AI assistant
 - [ ] **PWA / Mobile Support** — Progressive Web App for mobile users
+
+---
+
+## 💪 Motivation & Story
+
+> *"Exam mein fail hua, but I failed those I couldn't grade it. But we all know failure is yours. 1st step towards success — I learnt to be consistent, I learnt perseverance."*
+
+This project wasn't built in one go. It came from failure, from restarting, and from refusing to quit. The idea for the **Fundamental Rights Chatbot** came from a simple but powerful observation — in a country of 1.4 billion people, the majority don't know the rights the Constitution guarantees them. They face injustice not out of helplessness but out of unawareness.
+
+LexaFlow is an attempt to make **legal knowledge accessible to everyone** — not just corporations or people who can afford lawyers.
 
 ---
 
@@ -371,5 +400,5 @@ This project is developed for **academic and demonstration purposes**.
 ---
 
 <div align="center">
-  <sub>Built with ☕ Java · ⚛️ React + TypeScript · 🐍 Python & ❤️ by Shreeshant Prasad</sub>
+  <sub>Built with ☕ Java · ⚛️ React + TypeScript · 🐍 Python & ❤️Student</sub>
 </div>
