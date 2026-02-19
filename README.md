@@ -4,6 +4,8 @@
 
 ![Java](https://img.shields.io/badge/Java-17-orange?style=for-the-badge&logo=openjdk)
 ![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.x-green?style=for-the-badge&logo=springboot)
+![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 ![Microservices](https://img.shields.io/badge/Architecture-Microservices-blue?style=for-the-badge)
 ![Kafka](https://img.shields.io/badge/Event_Driven-Kafka-black?style=for-the-badge&logo=apachekafka)
 ![Docker](https://img.shields.io/badge/Deployment-Docker-2496ED?style=for-the-badge&logo=docker)
@@ -36,13 +38,13 @@
 
 ## 💡 About the Project
 
-**LexaFlow** is an enterprise-grade, microservices-based platform that automates **legal compliance, contract lifecycle management, and GST invoicing** — all in one unified system.
+**LexaFlow** is a **full-stack**, enterprise-grade platform that automates **legal compliance, contract lifecycle management, and GST invoicing** — all in one unified system.
 
 Built for **SMEs, Startups, and Freelancers** who cannot afford dedicated legal teams, LexaFlow brings AI into the legal workflow. It uses **Natural Language Processing (NLP)** to detect risky contract clauses, **digital signatures** for document authentication, and **automated GST invoicing** to ensure end-to-end compliance without manual intervention.
 
-The platform is built on **Spring Boot Microservices** with an **Event-Driven Architecture (EDA)** powered by **Apache Kafka**, ensuring high scalability, fault tolerance, and real-time processing.
+The **frontend** is built with **React 18 + TypeScript**, providing a fully type-safe, component-driven UI with real-time feedback on contract risk analysis and invoice status. The **backend** is powered by **Spring Boot Microservices** with an **Event-Driven Architecture (EDA)** via **Apache Kafka**, ensuring high scalability, fault tolerance, and real-time processing.
 
-> 💼 *This project demonstrates real-world backend engineering concepts: distributed systems, event-driven communication, AI integration, and secure authentication.*
+> 💼 *This project demonstrates full-stack engineering: React/TypeScript frontend, distributed microservices backend, event-driven communication, AI integration, and secure authentication.*
 
 ---
 
@@ -74,9 +76,10 @@ LexaFlow follows a **Distributed Microservices Architecture**. All services are 
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
-│                            CLIENT / USER                                │
+│               FRONTEND  —  React 18 + TypeScript  (Port: 3000)          │
+│        Vite · React Router · Axios · Tailwind CSS · React Query         │
 └───────────────────────────────┬─────────────────────────────────────────┘
-                                │ HTTPS
+                                │ HTTPS / REST
                                 ▼
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                     API GATEWAY  (Port: 8080)                           │
@@ -182,7 +185,13 @@ Step 8 ─── Audit Logging
 - Generates professional **PDF invoices** instantly on contract signing
 - Stores invoice history for accounting and audit purposes
 
-### 🛡 5. Audit & Compliance
+### 🖥 6. React + TypeScript Frontend
+- **Type-safe UI** built with React 18 and TypeScript — zero runtime type surprises
+- **React Router v6** for client-side navigation with protected routes (role-based)
+- **React Query** for server state management — auto caching, background refetching
+- **Axios interceptors** for attaching JWT tokens to every API request automatically
+- **Real-time Risk Dashboard** — visualizes AI risk score and flagged clauses on upload
+- **Tailwind CSS** for responsive, mobile-first design
 - **Immutable Audit Logs:** Every API action is logged with a checksum to prevent tampering
 - **Data Privacy Compliance:** Modules for GDPR / India's DPDP Act (Right to be Forgotten, Data Export)
 - All logs include: User ID, IP Address, Action, Timestamp
@@ -209,6 +218,7 @@ Step 8 ─── Audit Logging
 
 | Layer | Technology |
 |---|---|
+| **Frontend** | React 18, TypeScript 5.x, Vite, Tailwind CSS, React Router v6, React Query, Axios |
 | **Language** | Java 17, Python 3.10 |
 | **Framework** | Spring Boot 3.x, Flask |
 | **Architecture** | Microservices, Event-Driven Architecture (EDA) |
@@ -220,7 +230,7 @@ Step 8 ─── Audit Logging
 | **AI / NLP** | Python, spaCy, NLTK |
 | **PDF Generation** | Apache PDFBox |
 | **Containerization** | Docker, Docker Compose |
-| **Build Tool** | Maven |
+| **Build Tool** | Maven (Backend), Vite (Frontend) |
 
 ---
 
@@ -231,6 +241,7 @@ Step 8 ─── Audit Logging
 Make sure the following are installed on your machine:
 
 - **Java 17+** — [Download](https://adoptium.net/)
+- **Node.js 18+** — [Download](https://nodejs.org/) (for React frontend)
 - **Docker Desktop** — [Download](https://www.docker.com/products/docker-desktop/)
 - **Maven 3.8+** — [Download](https://maven.apache.org/)
 - **Python 3.10+** (for AI service) — [Download](https://www.python.org/)
@@ -257,7 +268,20 @@ cd ai-service
 pip install -r requirements.txt
 ```
 
-### Step 4: Start Everything with Docker Compose
+### Step 4: Set Up the Frontend
+
+```bash
+cd frontend
+npm install
+```
+
+Create a `.env` file inside the `frontend/` folder:
+
+```env
+VITE_API_BASE_URL=http://localhost:8080
+```
+
+### Step 5: Start Everything with Docker Compose
 
 This single command starts all microservices, PostgreSQL, Kafka, Zookeeper, and Redis in the correct order.
 
@@ -265,7 +289,7 @@ This single command starts all microservices, PostgreSQL, Kafka, Zookeeper, and 
 docker-compose up --build -d
 ```
 
-### Step 5: Verify Services Are Running
+### Step 6: Verify Services Are Running
 
 Open Eureka Dashboard to confirm all services are registered:
 
@@ -279,6 +303,7 @@ http://localhost:8761
 
 | Service | URL |
 |---|---|
+| **Frontend (React App)** | `http://localhost:3000` |
 | **API Gateway** | `http://localhost:8080` |
 | **Eureka Dashboard** | `http://localhost:8761` |
 | **Swagger / API Docs** | `http://localhost:8080/swagger-ui.html` |
@@ -320,10 +345,11 @@ http://localhost:8761
 - [x] AI Risk Analysis via Python/NLP
 - [x] Kafka event-driven Invoice generation
 - [x] Immutable Audit Logging
+- [x] React + TypeScript Frontend with protected routes & Risk Dashboard
 - [ ] **Blockchain Verification** — Store contract hashes on Ethereum/Hyperledger
 - [ ] **Aadhaar eSign Integration** — Government ID verification for Indian users
 - [ ] **LLM Chatbot** — Query contracts in plain English via an AI assistant
-- [ ] **Mobile App** — React Native client for contract management on the go
+- [ ] **PWA / Mobile Support** — Progressive Web App for mobile users
 
 ---
 
@@ -331,7 +357,7 @@ http://localhost:8761
 
 **Shreeshant Prasad**
 *Final Year B.Tech — Computer Science*
-*Backend Developer | Java & Spring Boot Enthusiast*
+*Full-Stack Developer | Java, Spring Boot & React + TypeScript Enthusiast*
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/yourprofile)
 [![GitHub](https://img.shields.io/badge/GitHub-Follow-black?style=for-the-badge&logo=github)](https://github.com/yourusername)
@@ -345,5 +371,5 @@ This project is developed for **academic and demonstration purposes**.
 ---
 
 <div align="center">
-  <sub>Built with ☕ Java, 🐍 Python & ❤️ by Shreeshant Prasad</sub>
+  <sub>Built with ☕ Java · ⚛️ React + TypeScript · 🐍 Python & ❤️ by Shreeshant Prasad</sub>
 </div>
